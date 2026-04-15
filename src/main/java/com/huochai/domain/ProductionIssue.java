@@ -1,4 +1,4 @@
-package com.huochai.agent;
+package com.huochai.domain;
 
 import lombok.Builder;
 import lombok.Data;

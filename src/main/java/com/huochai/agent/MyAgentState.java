@@ -8,6 +8,8 @@ import com.huochai.domain.TokenStats;
 import com.huochai.domain.ToolLearningResult;
 import com.huochai.domain.TrendAnalysis;
 
+import org.bsc.langgraph4j.state.AgentState;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AgentState {
+public class MyAgentState extends AgentState {
     // 用户输入
     private String userId;
     private String userRequest;

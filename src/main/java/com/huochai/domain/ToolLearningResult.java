@@ -1,4 +1,6 @@
-package com.huochai.agent;
+package com.huochai.domain;
+
+import com.huochai.service.CodeExecutorService;
 
 import java.util.List;
 
@@ -19,4 +21,6 @@ public class ToolLearningResult {
     private List<ProductionIssue> productionIssues;
     private List<ToolComparison> comparisons;
     private SourceCodeAnalysis sourceAnalysis;
+
+    private CodeExecutorService.ExecutionResult execResult;
 }

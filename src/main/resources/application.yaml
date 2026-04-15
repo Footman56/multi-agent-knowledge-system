@@ -1,0 +1,86 @@
+spring:
+  application:
+    name: java-engineer-growth-system
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: expireAfterWrite=6h,maximumSize=500
+
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/agent_system?useSSL=false&serverTimezone=UTC
+    username: root
+    password: yourpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  # Redis 配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      timeout: 3000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  # RabbitMQ 配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  # AI 配置
+  ai:
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY:your-deepseek-key}
+      base-url: https://api.deepseek.com
+    qwen:
+      api-key: ${QWEN_API_KEY:your-qwen-key}
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    ollama:
+      base-url: http://localhost:11434
+    vectorstore:
+      milvus:
+        host: localhost
+        port: 19530
+        database: default
+        initialize-schema: true
+        embedding-dimension: 1536
+
+# Dubbo 配置
+dubbo:
+  application:
+    name: agent-system
+  registry:
+    address: zookeeper://localhost:2181
+  protocol:
+    name: dubbo
+    port: 20880
+
+# 日志配置
+logging:
+  level:
+    com.example.agent: DEBUG
+    org.springframework.ai: DEBUG
+
+
+github:
+  api:
+    token: ${GITHUB_TOKEN:}  # 可选，配置后可提升限流额度（5000次/小时 vs 60次/小时）
+    base-url: https://api.github.com
